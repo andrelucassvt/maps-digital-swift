@@ -16,7 +16,7 @@ class HomePresenter: ObservableObject {
     @Published var showDetails = false
     
     @Published private var locationManager = CLLocationManager()
-    @Published private var userLocation = CLLocationCoordinate2D()
+    @Published var userLocation = CLLocationCoordinate2D()
     
     @Published var locations: [Location] = [
         Location(name: "Praia Grande", coordinate: CLLocationCoordinate2D(latitude: -0.762941, longitude: -48.512481)),

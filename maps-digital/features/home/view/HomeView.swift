@@ -13,12 +13,11 @@ struct HomeView: View {
     
     @ObservedObject private var controller = HomePresenter()
     
-    
     @State private var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: -0.755940, longitude: -48.522409), span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
     
     var body: some View {
         ZStack{
-            Map(coordinateRegion: $region, annotationItems: controller.locations){ location in
+            Map(coordinateRegion: $region, showsUserLocation: true, annotationItems: controller.locations){ location in
                 MapAnnotation(coordinate: location.coordinate) {
                     Button {
                         controller.showDetails = true
@@ -28,9 +27,10 @@ struct HomeView: View {
                             .font(.title)
                     }
                     .sheet(isPresented: $controller.showDetails){
-                        Text("oiii")
-                            .presentationDetents([.height(300)])
+                        DetailsView()
+                            .presentationDetents([.medium])
                     }
+                    
                 }
             }
             .edgesIgnoringSafeArea(.all)
